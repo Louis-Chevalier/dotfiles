@@ -1,6 +1,7 @@
  My Dotfiles
 
-This directory contains the dotfiles for my system
+This directory contains the dotfiles for my system.
+I downloaded one of the preconfigured official hyperland setups and am continuously changing it to my liking
 
 ## Requirements
 Ensure you have the following 
