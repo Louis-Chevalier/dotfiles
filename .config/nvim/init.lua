@@ -21,13 +21,31 @@ local opts = {}
 local plugins = {
 	{
   	"folke/tokyonight.nvim",lazy = false, priority = 1000, opts ={},
-	}
+	},
+	{"nvim-treesitter/nvim-treesitter", build= ":TSUpdate"},
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.8',
+     dependencies = { 'nvim-lua/plenary.nvim' }
+  },
 }
 
 require("lazy").setup(plugins, opts)
 require("tokyonight").setup()
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme tokyonight-storm")
 
 
 local colors = require("tokyonight.colors").setup() -- pass in any of the config options as explained above
 local util = require("tokyonight.util")
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n','<C-p>',builtin.find_files,{})
+vim.keymap.set('n','<leader>fg',builtin.live_grep,{})
+
+--Treesitter
+local config = require("nvim-treesitter.configs")
+config.setup({
+  ensure_installed = {"lua", "javascript","python"},
+  highlight = { enable = true },
+  indent = { enable = true }
+})
+
